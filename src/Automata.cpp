@@ -1,7 +1,6 @@
 #include<iostream>
 #include<vector>
 #include"Automata.h"
-#include"windows.h"
 
 using namespace std;
 
@@ -99,10 +98,9 @@ void Automata::cook(unsigned int drinkIndex)
 	{
 		state = COOK;
 		cout << menu[drinkIndex] << " is preparing. Please, wait...\n[";
-		for (size_t i = 0; i < 60; ++i)
+		for (size_t i = 0; i < 30; ++i)
 		{
 			cout << "#";
-			Sleep(30);
 		}
 		cout << "]\nYour drink is already prepared.\n";
 		cash -= prices[drinkIndex];
