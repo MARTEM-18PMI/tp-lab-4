@@ -26,7 +26,10 @@ void Automata::off()
 		state = OFF;
 		cout << "The Coffee machine is off. The change is " << change() << ".\n";
 	}
-	else 
+	else if (state == OFF)
+	{
+		cout << "*No reaction*\n";
+	}else
 	{
 		cout << "Terminate the process " << stateNames[state] << " before shutdown.\n";
 	}
@@ -50,6 +53,10 @@ void Automata::coin(unsigned int new_cash)
 		state = ACCEPT;
 		cash += new_cash;
 		cout << "The money was received. Your current balance is " << cash << ".\n";
+	}
+	else if (state == OFF)
+	{
+		cout << "*No reaction*\n";
 	}
 	else if (state == ACCEPT)
 	{
@@ -75,14 +82,20 @@ bool Automata::check(unsigned int drinkIndex)
 void Automata::cancel()
 {
 	if (state != OFF)
+	{
+		cout << "Canceled.\n";
 		state = WAIT;
+	}
 	else
-		cout << "Sorry, the Coffee machine is off.\n";
+	{
+		cout << "*No reaction*\n";
+	}
+		
 }
 
 void Automata::cook(unsigned int drinkIndex)
 {
-	if (state == ACCEPT)
+	if (state == CHECK)
 	{
 		state = COOK;
 		cout << menu[drinkIndex] << " is preparing. Please, wait...\n[";
@@ -119,6 +132,10 @@ void Automata::choice(unsigned int drinkIndex)
 	else if ((1 >= drinkIndex || drinkIndex >= prices.size()) && (state == ACCEPT))
 	{
 		cout << "The number of drink is incorrect. Try again.\n";
+	}
+	else if (state == OFF)
+	{
+		cout << "*No reaction*\n";
 	}
 	else
 		cout << "Sorry, but you cannot choose a drink right now.\n";

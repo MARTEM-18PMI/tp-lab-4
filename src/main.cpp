@@ -5,13 +5,13 @@ int main()
 {
 	Automata machine;
 	machine.on();
-	machine.on();
-	machine.cook(2);
-	machine.choice(1);
-	machine.printMenu();
-	machine.coin(25);
-	machine.choice(5);
+	machine.coin(20);
 	machine.off();
-	system("pause");
+	machine.choice(5);
+	machine.cancel();
+	machine.off();
+	machine.choice(1);
+	machine.cancel();
+	machine.coin(10);
 	return 0;
 }
